@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "241194493021",
+    "project_id": "ecommerce360-21b01",
+    "storage_bucket": "ecommerce360-21b01.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:241194493021:android:9b82f9a507bf4f657519b4",
+        "android_client_info": {
+          "package_name": "com.nptl.app.ecommerce360"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "241194493021-c7d8qc2o7pidromna72b2uilg2bncrsj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nptl.app.ecommerce360",
+            "certificate_hash": "4019031d743b39819b56061fb92039766cb8ad67"
+          }
+        },
+        {
+          "client_id": "241194493021-lfhhalo466di8nknmeh873f07s7d8e02.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8U1RhiDXDyKxoMNxH86ORCuyVlWsR6-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "241194493021-lfhhalo466di8nknmeh873f07s7d8e02.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "241194493021-l8q35rkd1v8joetqlen88vrk6f922pa5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nptl.eCommerce360.eCommerce360"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:241194493021:android:6801e4137b962d6d7519b4",
+        "android_client_info": {
+          "package_name": "com.nptl.ecommerce.deliveryman"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "241194493021-lfhhalo466di8nknmeh873f07s7d8e02.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8U1RhiDXDyKxoMNxH86ORCuyVlWsR6-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "241194493021-lfhhalo466di8nknmeh873f07s7d8e02.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "241194493021-l8q35rkd1v8joetqlen88vrk6f922pa5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nptl.eCommerce360.eCommerce360"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
