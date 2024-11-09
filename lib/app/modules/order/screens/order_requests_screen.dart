@@ -9,9 +9,9 @@ class OrderRequestsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-        appBar: AppBar(title: Text('Order Request')),
+        appBar: AppBar(title: const Text('Order Request')),
         body: ListView(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           children: [
             OrderCard(
               storeName: 'Family Supermarket',
@@ -59,23 +59,23 @@ class OrderCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 20,
                   backgroundImage: AssetImage('assets/store_logo.png'), // Replace with a suitable image
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         storeName,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                         ),
                       ),
-                      Text('1 Item'),
+                      const Text('1 Item'),
                     ],
                   ),
                 ),
@@ -84,34 +84,34 @@ class OrderCard extends StatelessWidget {
                     Text(
                       timeAgo,
                       style: TextStyle(
-                        color: Colors.grey,
+                        color: Theme.of(context).hintColor,
                         fontSize: 12,
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 4),
-                      padding: EdgeInsets.symmetric(horizontal: 6, vertical: 4),
-                      color: Colors.green.shade50,
+                      margin: const EdgeInsets.only(top: 4),
+                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                      color: Theme.of(context).primaryColor.withOpacity(0.1),
                       child: Text(
                         distance,
-                        style: TextStyle(color: Colors.green, fontSize: 12),
+                        style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 12),
                       ),
                     ),
                   ],
                 ),
               ],
             ),
-            Divider(),
+            const Divider(),
             Text("Delivery Address:",style: robotoMedium.copyWith(fontSize: 14,color: Theme.of(context).primaryColor.withOpacity(0.7)),),
-            SizedBox(height: 4),
+            const SizedBox(height: 4),
             Row(
               children: [
                 CircleAvatar(
                   radius: 15,
-                  backgroundColor: Colors.blue.shade50,
-                  child: Icon(Icons.person, color: Colors.blue,size: 16,),
+                  backgroundColor: Colors.blue.withOpacity(.3),
+                  child: const Icon(Icons.person, color: Colors.blue,size: 16,),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 // Expanded(
                 //   flex: 1,
                 //   child: Text(
@@ -123,7 +123,7 @@ class OrderCard extends StatelessWidget {
                   flex: 2,
                   child: Text(
                     deliveryAddress,
-                    style: TextStyle(fontSize: 14, color: Colors.grey),
+                    style: TextStyle(fontSize: 14, color:Theme.of(context).hintColor),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                   ),
@@ -134,10 +134,10 @@ class OrderCard extends StatelessWidget {
                     onPressed: () {
                       // Implement map view logic
                     },
-                    icon: Icon(Icons.location_on_sharp,size: 16,),
+                    icon: const Icon(Icons.location_on_sharp,size: 16,),
                     label: Text('On Map',style: robotoRegular.copyWith(fontSize: 12),),
                     style: FilledButton.styleFrom(
-                      backgroundColor: Colors.blue.shade50,
+                      backgroundColor: Colors.blue.withOpacity(.2),
                       foregroundColor: Colors.blue,
                       // shape: RoundedRectangleBorder(
                       //   borderRadius: BorderRadius.circular(8),
@@ -148,7 +148,7 @@ class OrderCard extends StatelessWidget {
                 ),
               ],
             ),
-            Divider(),
+            const Divider(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -160,12 +160,12 @@ class OrderCard extends StatelessWidget {
                       style: robotoBold.copyWith(fontSize: 16),
                     ),
                     Container(
-                       margin: EdgeInsets.only(top: 8),
-                       padding: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-                       color: Colors.green.shade50,
+                       margin: const EdgeInsets.only(top: 8),
+                       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+                       color: Theme.of(context).primaryColor.withOpacity(.1),
                        child: Text(
                          'Payment - Digitally Paid',
-                         style: robotoMedium.copyWith(color: Colors.green, fontSize: 12),
+                         style: robotoMedium.copyWith(color: Theme.of(context).primaryColor, fontSize: 12),
                        ),
                       ),
                   ],
@@ -183,7 +183,7 @@ class OrderCard extends StatelessWidget {
                         child: Text('Ignore',style: robotoBold.copyWith(color: Colors.red),),
                       ),
                     ),
-                    SizedBox(width: 8),
+                    const SizedBox(width: 8),
                     SizedBox(
                       height: 37,
                       child: ElevatedButton(
@@ -204,10 +204,10 @@ class OrderCard extends StatelessWidget {
             //   child: Container(
             //     margin: EdgeInsets.only(top: 8),
             //     padding: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-            //     color: Colors.green.shade50,
+            //     color: Theme.of(context).primaryColor.shade50,
             //     child: Text(
             //       'Payment - Digitally Paid',
-            //       style: robotoMedium.copyWith(color: Colors.green, fontSize: 12),
+            //       style: robotoMedium.copyWith(color: Theme.of(context).primaryColor, fontSize: 12),
             //     ),
             //   ),
             // ),

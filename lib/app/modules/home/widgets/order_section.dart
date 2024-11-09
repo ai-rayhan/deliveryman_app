@@ -13,7 +13,7 @@ class OrdersSection extends StatelessWidget {
           children: [
             Expanded(
               child: OrderCountCard(
-              color: Color.fromARGB(195, 21, 187, 26),
+              color: Color(0xff007d78),
               title: 'Today\'s Orders',
               value: '3',
             ),
@@ -21,7 +21,7 @@ class OrdersSection extends StatelessWidget {
             SizedBox(width: 16),
             Expanded(
               child:  OrderCountCard(
-              color: Color.fromARGB(201, 40, 128, 42),
+              color: Color(0xff006c78),
               title: 'This Week Orders',
               value: '3',
             ),
@@ -30,7 +30,7 @@ class OrdersSection extends StatelessWidget {
         ),
         SizedBox(height: 16),
         OrderCountCard(
-              color: Color.fromARGB(173, 40, 136, 91),
+              color: Color(0xff008e6c),
               title: 'Total Orders',
               value: '3',
             ),

@@ -6,7 +6,8 @@ class EarningsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomCard(
-      color: Theme.of(context).primaryColor,
+      // color: Colors.deepPurpleAccent.shade100,
+      color: Color(0xff007f3a),
       child: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
