@@ -1,7 +1,6 @@
 import 'package:deliveryman_app/common/global_widgets/custom_card.dart';
 import 'package:deliveryman_app/util/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 
 
 class OrderRequestsScreen extends StatelessWidget {

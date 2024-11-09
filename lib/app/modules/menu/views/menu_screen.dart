@@ -1,13 +1,10 @@
 import 'package:deliveryman_app/app/modules/auth/controllers/auth_controller.dart';
-import 'package:deliveryman_app/app/modules/auth/domain/entities/user.dart';
 import 'package:deliveryman_app/app/modules/menu/widgets/menu_item.dart';
 import 'package:deliveryman_app/app/routes/app_routes.dart';
 import 'package:deliveryman_app/common/global_widgets/custom_card.dart';
 import 'package:deliveryman_app/common/global_widgets/dialogs/signout_dialog.dart';
 import 'package:deliveryman_app/common/global_widgets/section_header.dart';
-import 'package:deliveryman_app/helper/address_helper.dart';
 import 'package:deliveryman_app/helper/translated_text.dart';
-import 'package:deliveryman_app/util/asset_path.dart';
 import 'package:deliveryman_app/util/dimensions.dart';
 import 'package:deliveryman_app/util/sizedbox_space.dart';
 import 'package:deliveryman_app/util/styles.dart';
@@ -24,69 +21,11 @@ class MenuScreen extends StatefulWidget {
 class _MenuScreenState extends State<MenuScreen> {
   @override
   Widget build(BuildContext context) {
-    User? appUser = AuthController.user;
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
-            Container(
-              color: Theme.of(context).primaryColor,
-              padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
-              child: Row(
-                children: [
-                  SizedBox(
-                    height: 100,
-                    width: 100,
-                    child: Image.asset(AssetPath.profileIcon),
-                  ),
-                  SizedBoxSpace.w10,
-                  appUser==null?
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "guest_user".translate,
-                        style: robotoBold.copyWith(
-                          color: Colors.white,
-                          fontSize: Dimensions.fontSizeExtraLarge,
-                        ),
-                      ),
-                      SizedBoxSpace.h5,
-                      Text(
-                        "login_to_view_features".translate,
-                        style: robotoRegular.copyWith(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  )
-                  :
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('${ appUser.firstname}  ${appUser.lastname}',
-                        style: robotoBold.copyWith(
-                          color: Colors.white,
-                          fontSize: Dimensions.fontSizeExtraLarge,
-                        ),
-                      ),
-                      SizedBoxSpace.h5,
-                      SizedBox(
-                        width: MediaQuery.sizeOf(context).width /1.7,
-                        child: Text(AuthController.user?.address??getExtractedAddress(AuthController.user?.billingAddress, 3),
-                          style: robotoRegular.copyWith(
-                            color: Colors.white,
-                          ),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
-                  ),
-               
-                ],
-              ),
-            ),
+           Icon(Icons.account_circle_rounded,size: 100,color: Theme.of(context).primaryColor,),
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(Dimensions.paddingSizeDefault),

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:deliveryman_app/app/modules/auth/domain/entities/user.dart';
 
 // Class to represent the options
@@ -115,7 +113,7 @@ class Order {
   final dynamic userId;
   final String? customerName;
   final String contactEmail;
-  final Cart cartJson;
+  final Cart? cartJson;
   final double subTotal;
   final double discount;
   final String? couponCode;
@@ -142,7 +140,7 @@ class Order {
     required this.userId,
     required this.customerName,
     required this.contactEmail,
-    required this.cartJson,
+     this.cartJson,
     required this.subTotal,
     required this.discount,
      this.couponCode,
@@ -171,13 +169,13 @@ class Order {
     List<OrderDetail> details = detailsList.isNotEmpty
         ? detailsList.map((i) => OrderDetail.fromJson(i)).toList()
         : [];
-     Cart cart = Cart.fromJson(jsonDecode(json['cart_json']));
+    //  Cart cart = Cart.fromJson(jsonDecode(json['cart_json']));
     return Order(
       id: json['id'],
       userId: json['user_id'],
       customerName: json['customer_name'],
       contactEmail: json['contact_email'],
-      cartJson: cart,
+      // cartJson: cart,
       subTotal: double.parse(json['sub_total'].toString()),
       discount:double.tryParse(json['discount'].toString())??0.0,
       couponCode: json['coupon_code'],

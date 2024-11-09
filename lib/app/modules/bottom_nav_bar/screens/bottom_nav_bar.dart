@@ -1,11 +1,10 @@
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:deliveryman_app/app/modules/bottom_nav_bar/controllers/bottom_nav_bar_controller.dart';
 import 'package:deliveryman_app/app/routes/app_routes.dart';
 import 'package:deliveryman_app/helper/translated_text.dart';
-import 'package:deliveryman_app/util/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:responsive_navigation_bar/responsive_navigation_bar.dart';
 
 class BaseBottomNavScreen extends StatefulWidget {
   const BaseBottomNavScreen({super.key});
@@ -15,19 +14,6 @@ class BaseBottomNavScreen extends StatefulWidget {
 }
 
 class _BaseBottomNavScreenState extends State<BaseBottomNavScreen> {
-  static const List<IconData> deActiveIconList = [
-    Icons.home_outlined,
-    Icons.shopping_bag_outlined,
-    Icons.receipt_outlined,
-    Icons.menu_outlined
-  ];
-    static const List<IconData>activeIconList = [
-    Icons.home,
-    Icons.shopping_bag,
-    Icons.receipt,
-    Icons.menu
-  ];
-  static const labels = ["home", "shop", "orders", "menu"];
 
   @override
   void initState() {
@@ -37,10 +23,7 @@ class _BaseBottomNavScreenState extends State<BaseBottomNavScreen> {
 
     });
   }
-load()async{
 
-
-}
   @override
   Widget build(BuildContext context) {
     return GetBuilder<MainBottomNavController>(builder: (controller) {
@@ -61,37 +44,45 @@ load()async{
             onGenerateRoute: controller.onGenerateRoute,
           ),
         ),
-        bottomNavigationBar: AnimatedBottomNavigationBar.builder(
-          activeIndex: controller.currentIndex,
-          backgroundColor: Theme.of(context).cardColor,
-          onTap: (index) => controller.changePage(index),
-          itemCount: deActiveIconList.length,
-          tabBuilder: (int index, bool isActive) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 7.0),
-              child: Column(
-                children: [
-                  Icon(
-                   isActive? activeIconList[index]:deActiveIconList[index],
-                    size: 24,
-                    color: isActive
-                        ? Theme.of(context).primaryColor
-                        : Theme.of(context).hintColor,
-                  ),
-                  Text(
-                    labels[index].translate,
-                    style: TextStyle(
-                      fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
-                      color: isActive
-                          ? Theme.of(context).primaryColor
-                          : Theme.of(context).hintColor,
-                      fontSize: 12,
-                    ),
-                  )
-                ],
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ResponsiveNavigationBar(
+            backgroundColor:Theme.of(context).hintColor.withOpacity(.1),
+            selectedIndex: controller.currentIndex,
+            onTabChange: (index){
+              controller.changePage(index);
+            },
+            textStyle: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 12,
+            ),
+            fontSize: 18,
+            navigationBarButtons:  <NavigationBarButton>[
+              NavigationBarButton(
+                text: "home".translate,
+                icon: Icons.home,
+                backgroundColor:Theme.of(context).primaryColor ,
+             
               ),
-            );
-          },
+              NavigationBarButton(
+                text: "order_request".translate,
+                icon: Icons.pending_actions_rounded,
+                backgroundColor:Theme.of(context).primaryColor ,
+              ),
+              NavigationBarButton(
+                text: "orders".translate,
+                icon: Icons.receipt,
+                backgroundColor:Theme.of(context).primaryColor ,
+              ),
+              NavigationBarButton(
+                text: "menu".translate,
+                icon: Icons.menu,
+                backgroundColor:Theme.of(context).primaryColor ,
+              ),
+            ],
+           
+          ),
         ),
       );
     });

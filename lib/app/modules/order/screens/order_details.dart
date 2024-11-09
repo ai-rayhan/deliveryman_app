@@ -43,9 +43,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
           builder: (controller) {
             if (controller.inProgress) {
               return const Center(child: CircularProgressIndicator());
-            } else if (controller.errorMessage != null && controller.errorMessage!.isNotEmpty) {
-              return Center(child: Text(controller.errorMessage!));
-            }
+            } 
+            // else if (controller.errorMessage != null && controller.errorMessage!.isNotEmpty) {
+            //   return Center(child: Text(controller.errorMessage!));
+            // }
             // order=controller.ordersDetailsResponse.data.order;
             return Column(
               children: [
@@ -55,7 +56,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                 // _buildStoreDetailsSection(),
                 _buildPaymentMethodSection(order),
                 _buildOrderSummarySection(order),
-                _buildActionButtons(order.id),
+                // _buildActionButtons(order.id),
+              (order.orderStatus==1)? _buildStatusUpdateSection(order): Container()
               ],
             );
           }
@@ -229,38 +231,29 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
       ),
     ]);
   }
+   Widget _buildStatusUpdateSection(Order order) {
+    return Column(
+      children: [
+      ListTile(
+        leading:  Icon(Icons.manage_history_rounded,size: 20,color: Theme.of(context).primaryColor,),
+        title:Text("Where are you now?".translate),
+        subtitle: ColoredBox(
+          color: Colors.lightBlue.shade50,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("This Order status is ${getStatusName(order.orderStatus)}.If you want to change status, please click on the button below.".translate),
+          )),
+      ),
+      SizedBox(
+        width:  double.infinity,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+          child: ElevatedButton(onPressed: (){}, child: Text("Update Status".translate)),
+        ))
+      ]
+    );
+}
 
-  // Widget _buildOrderSummarySection() {
-  //   return Padding(
-  //     padding: const EdgeInsets.all(8.0),
-  //     child: Container(
-  //       child: Column(
-  //         crossAxisAlignment: CrossAxisAlignment.start,
-  //         children: [
-  //           Text(
-  //             "order_summary_title".tr,
-  //             style: TextStyle(fontWeight: FontWeight.bold),
-  //           ),
-  //           const SizedBox(height: 19),
-  //           _buildInfoRow("item_price_label".tr, "\$ 400"),
-  //           const SizedBox(height: 10),
-  //           _buildInfoRow("discount_label".tr, "(-) \$ 400"),
-  //           const SizedBox(height: 10),
-  //           _buildInfoRow("additional_charge_label".tr, "(+) \$ 400"),
-  //           const SizedBox(height: 10),
-  //           _buildInfoRow("vat_tax_label".tr, "(+) \$ 400"),
-  //           const SizedBox(height: 10),
-  //           _buildInfoRow("delivery_fee_label".tr, "(+) \$ 400"),
-  //           Divider(color: Colors.grey, thickness: 1),
-  //           _buildInfoRow(
-  //             "total_amount_label".tr,
-  //             "\$ 800",
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
 
   Widget _buildActionButtons(int orderId) {
     return Padding(
@@ -360,458 +353,4 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
     ),
   );
 }
-
-
 }
-
-
-// class OrderDetailsScreen extends StatefulWidget {
-//   const OrderDetailsScreen({super.key});
-
-//   @override
-//   State<OrderDetailsScreen> createState() => _OrderDetailsScreenState();
-// }
-
-// class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
-
-//   String? selectedOption;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final Order order = Get.arguments as Order;
-//     return Scaffold(
-//       appBar: showAppBar(
-//         context: context,
-//         text: "order_details_title".tr,
-//       ),
-//       body: Column(
-//         children: [
-//           Expanded(
-//             child: SingleChildScrollView(
-//               child: Column(
-//                 children: [
-//                   // Center(
-//                   //   child: SizedBox(
-//                   //     height: 150,
-//                   //     child: Lottie.asset(
-//                   //       'assets/lottie/delivered.json',
-//                   //     ),
-//                   //   ),
-//                   // ),
-//                   Padding(
-//                     padding: const EdgeInsets.all(8.0),
-//                     child: Container(
-             
-//                       child: Padding(
-//                         padding: EdgeInsets.all(8.0),
-//                         child: Column(
-//                             crossAxisAlignment: CrossAxisAlignment.start,
-//                             children: [
-//                               Text(
-//                                 "general_info_title".tr,
-//                                 style: TextStyle(fontWeight: FontWeight.bold),
-//                               ),
-//                               SizedBox(
-//                                 height: 10,
-//                               ),
-//                               Row(
-//                                 mainAxisAlignment:
-//                                     MainAxisAlignment.spaceBetween,
-//                                 children: [
-//                                   Text("order_id_label".tr),
-//                                   Text(
-//                                     "#${order.id}",
-//                                     style:robotoBold.copyWith(fontSize: 14),
-//                                   )
-//                                 ],
-//                               ),
-//                               Divider(),
-//                               Row(
-//                                 mainAxisAlignment:
-//                                     MainAxisAlignment.spaceBetween,
-//                                 children: [
-//                                   Text("order_date_label".tr),
-//                                   Text(DateConverter.readableDateAndTime(order.createdAt),
-//                                     style:robotoMedium.copyWith(fontSize: 13),
-//                                   )
-//                                 ],
-//                               ),
-//                               Divider(),
-//                               Row(
-//                                 mainAxisAlignment:
-//                                     MainAxisAlignment.spaceBetween,
-//                                 children: [
-//                                   Text("delivery_label".tr),
-//                                   Text(paymentMethodName(order.paymentStatus),
-//                                     style: robotoMedium.copyWith(fontSize: 13,color: Theme.of(context).primaryColor),
-//                                   )
-//                                 ],
-//                               ),
-//                               Divider(),
-//                               Row(
-//                                 mainAxisAlignment:
-//                                     MainAxisAlignment.spaceBetween,
-//                                 children: [
-//                                   Text("item_count_label".tr),
-//                                   Text(getStatusName(order.orderStatus),
-//                                     style:
-//                                         TextStyle(fontWeight: FontWeight.w500),
-//                                   )
-//                                 ],
-//                               ),
-//                             ]),
-//                       ),
-//                     ),
-//                   ),
-//                   Container(
-                
-//                     child: Column(
-//                         crossAxisAlignment: CrossAxisAlignment.start,
-//                         children: [
-//                           SizedBox(
-//                             height: 8,
-//                           ),
-//                           Padding(
-//                             padding:
-//                                 const EdgeInsets.symmetric(horizontal: 16.0),
-//                             child: Text("item_info_title".tr),
-//                           ),
-//                           Container(
-//                             constraints: BoxConstraints(maxHeight: 300),
-//                             child: ListView.builder(
-//                               shrinkWrap: true,
-//                               physics: NeverScrollableScrollPhysics(),
-//                               itemCount: order.details.length,
-//                               itemBuilder: (context, index) {
-//                                 final orderDetail = order.details[index];
-//                                 return Padding(
-//                                   padding: const EdgeInsets.symmetric(
-//                                       horizontal: 16.0),
-//                                   child: OrderItem(orderDetail: orderDetail),
-//                                 );
-//                               },
-//                             ),
-//                           )
-                        
-//                         ]),
-//                   ),
-//                   SizedBox(
-//                     height: 10,
-//                   ),
-//                   Container(
-              
-//                     child: Column(
-//                         crossAxisAlignment: CrossAxisAlignment.start,
-//                         children: [
-//                           Padding(
-//                             padding: const EdgeInsets.only(top: 16.0, left: 16),
-//                             child: Text(
-//                               "delivery_details_title".tr,
-//                               style: TextStyle(fontWeight: FontWeight.bold),
-//                             ),
-//                           ),
-//                           ListTile(
-//                             leading: CircleAvatar(
-                          
-//                               child: Icon(
-//                                 Icons.store,
-//                                 size: 40,
-//                                 color: Colors.green,
-//                               ),
-//                             ),
-//                             title: Text(
-//                               "from_store_label".tr,
-//                               style: TextStyle(fontWeight: FontWeight.bold),
-//                             ),
-//                             subtitle: Text("House: 00, Road: 00,City-000"),
-//                           ),
-//                           ListTile(
-//                             leading: CircleAvatar(
-                          
-//                               child: Icon(
-//                                 Icons.location_on,
-//                                 size: 40,
-//                                 color: Colors.green,
-//                               ),
-//                             ),
-//                             title: Text(
-//                               "to_label".tr,
-//                               style: TextStyle(fontWeight: FontWeight.bold),
-//                             ),
-//                             subtitle: Text("House: 00, Road: 00,City-000"),
-//                           ),
-//                         ]),
-//                   ),
-//                   SizedBox(
-//                     height: 10,
-//                   ),
-//                   Container(
-      
-//                     child: Column(
-//                         crossAxisAlignment: CrossAxisAlignment.start,
-//                         children: [
-//                           Padding(
-//                             padding: const EdgeInsets.only(top: 16.0, left: 16),
-//                             child: Text(
-//                               "store_details_title".tr,
-//                               style: TextStyle(fontWeight: FontWeight.bold),
-//                             ),
-//                           ),
-//                           ListTile(
-//                             leading: CircleAvatar(
-//                               backgroundColor: Colors.white70,
-//                               child: Image.asset("assets/intro2.png"),
-//                             ),
-//                             title: Text(
-//                               "Fresh Local",
-//                               style: TextStyle(fontWeight: FontWeight.w500),
-//                             ),
-//                             subtitle: Text("House: 00, Road: 00,City-000"),
-//                           ),
-//                         ]),
-//                   ),
-//                   SizedBox(
-//                     height: 10,
-//                   ),
-//                   Container(
-            
-//                     child: Column(
-//                         crossAxisAlignment: CrossAxisAlignment.start,
-//                         children: [
-//                           Padding(
-//                             padding: const EdgeInsets.only(top: 16.0, left: 16),
-//                             child: Text(
-//                               "payment_method_title".tr,
-//                               style: TextStyle(fontWeight: FontWeight.bold),
-//                             ),
-//                           ),
-//                           ListTile(
-//                             leading: CircleAvatar(
-//                               backgroundColor: Colors.white70,
-//                               child: Icon(
-//                                Icons.payment_rounded,
-//                                 color: Color.fromARGB(255, 66, 66, 66),
-//                                 size: 18,
-//                               ),
-//                             ),
-//                             title: Text(
-//                               "cash_label".tr,
-//                               style: TextStyle(
-//                                   fontWeight: FontWeight.w400,
-//                                   fontSize: 14,
-//                                   color: Colors.grey[600]),
-//                             ),
-//                           ),
-//                         ]),
-//                   ),
-//                   Padding(
-//                     padding: const EdgeInsets.all(8.0),
-//                     child: Container(
-         
-//                       child: Padding(
-//                         padding: EdgeInsets.all(8.0),
-//                         child: Column(
-//                             crossAxisAlignment: CrossAxisAlignment.start,
-//                             children: [
-//                               Text(
-//                                 "order_summary_title".tr,
-//                                 style: TextStyle(fontWeight: FontWeight.bold),
-//                               ),
-//                               SizedBox(
-//                                 height: 19,
-//                               ),
-//                               Row(
-//                                 mainAxisAlignment:
-//                                     MainAxisAlignment.spaceBetween,
-//                                 children: [
-//                                   Text("item_price_label".tr),
-//                                   Text(
-//                                     "\$ 400",
-//                                   )
-//                                 ],
-//                               ),
-//                               SizedBox(
-//                                 height: 10,
-//                               ),
-//                               Row(
-//                                 mainAxisAlignment:
-//                                     MainAxisAlignment.spaceBetween,
-//                                 children: [
-//                                   Text("discount_label".tr),
-//                                   Text(
-//                                     "(-) \$ 400 ",
-//                                     style: TextStyle(
-//                                         fontWeight: FontWeight.normal),
-//                                   )
-//                                 ],
-//                               ),
-//                               SizedBox(
-//                                 height: 10,
-//                               ),
-//                               Row(
-//                                 mainAxisAlignment:
-//                                     MainAxisAlignment.spaceBetween,
-//                                 children: [
-//                                   Text("additional_charge_label".tr),
-//                                   Text(
-//                                     "(+) \$ 400 ",
-//                                   )
-//                                 ],
-//                               ),
-//                               SizedBox(
-//                                 height: 10,
-//                               ),
-//                               Row(
-//                                 mainAxisAlignment:
-//                                     MainAxisAlignment.spaceBetween,
-//                                 children: [
-//                                   Text("vat_tax_label".tr),
-//                                   Text(
-//                                     "(+) \$ 400 ",
-//                                   )
-//                                 ],
-//                               ),
-//                               SizedBox(
-//                                 height: 10,
-//                               ),
-//                               Row(
-//                                 mainAxisAlignment:
-//                                     MainAxisAlignment.spaceBetween,
-//                                 children: [
-//                                   Text("delivery_fee_label".tr),
-//                                   Text(
-//                                     "(+) \$ 400 ",
-//                                   )
-//                                 ],
-//                               ),
-//                               Divider(
-//                                 color: Colors.grey,
-//                                 thickness: 1,
-//                               ),
-//                               Row(
-//                                 mainAxisAlignment:
-//                                     MainAxisAlignment.spaceBetween,
-//                                 children: [
-//                                   Text(
-//                                     "total_amount_label".tr,
-//                                     style: TextStyle(
-//                                         color: Color.fromARGB(255, 40, 156, 44),
-//                                         fontWeight: FontWeight.bold,
-//                                         fontSize: 17),
-//                                   ),
-//                                   Text(
-//                                     "\$ 800",
-//                                     style: TextStyle(
-//                                         color: Color.fromARGB(255, 40, 156, 44),
-//                                         fontWeight: FontWeight.bold,
-//                                         fontSize: 17),
-//                                   ),
-//                                 ],
-//                               ),
-//                             ]),
-//                       ),
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ),
-//           Container(
-
-//             child: Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//               children: [
-//                 ElevatedButton(
-//                   style: ElevatedButton.styleFrom(
-//                       backgroundColor: Color.fromARGB(255, 58, 154, 61)),
-//                   onPressed: () {
-//                     // Navigate.to(
-//                     //     screen: OrderTrackingScreen(), context: context);
-//                   },
-//                   child: Padding(
-//                     padding: const EdgeInsets.symmetric(
-//                         horizontal: 20.0, vertical: 14),
-//                     child: Text("track_order_button".tr),
-//                   ),
-//                 ),
-//                 OutlinedButton(
-//                     style: OutlinedButton.styleFrom(
-//                         side: BorderSide(
-//                             color: Color.fromARGB(255, 128, 205, 130),
-//                             width: 2)),
-//                     onPressed: () {
-//                       showDialog(
-//                         context: context,
-//                         builder: (context) => AlertDialog(
-//                           title: Text("select_cancellation_reason_title".tr),
-//                           content: Column(
-//                             mainAxisSize: MainAxisSize.min,
-//                             children: [
-//                               Row(
-//                                 children: [
-//                                   Radio(
-//                                     value: 'order_delivered_time_reason'.tr,
-//                                     groupValue: selectedOption,
-//                                     onChanged: (value) {
-//                                       setState(() {
-//                                         selectedOption = value;
-//                                       });
-//                                     },
-//                                   ),
-//                                   Text('order_delivered_time_reason'.tr),
-//                                 ],
-//                               ),
-//                               Row(
-//                                 children: [
-//                                   Radio(
-//                                     value: 'ordered_wrong_food_reason'.tr,
-//                                     groupValue: selectedOption,
-//                                     onChanged: (value) {
-//                                       setState(() {
-//                                         selectedOption = value;
-//                                       });
-//                                     },
-//                                   ),
-//                                   Text('ordered_wrong_food_reason'.tr),
-//                                 ],
-//                               ),
-//                             ],
-//                           ),
-//                           actions: [
-//                             TextButton(
-//                               onPressed: () {},
-//                               child: Text(
-//                                 "submit_button".tr,
-//                                 style: TextStyle(color: Colors.grey),
-//                               ),
-//                             ),
-//                             TextButton(
-//                               onPressed: () {},
-//                               child: Text(
-//                                 "cancel_button".tr,
-//                                 style: TextStyle(color: Colors.green),
-//                               ),
-//                             ),
-//                           ],
-//                         ),
-//                       );
-//                     },
-//                     child: Padding(
-//                       padding: const EdgeInsets.symmetric(
-//                           horizontal: 20.0, vertical: 14),
-//                       child: Text(
-//                         "cancel_order_button".tr,
-//                         style: TextStyle(color: Colors.grey),
-//                       ),
-//                     )),
-//               ],
-//             ),
-//           ),
-//           SizedBox(
-//             height: 5,
-//           )
-//         ],
-//       ),
-//     );
-//   }
-// }
