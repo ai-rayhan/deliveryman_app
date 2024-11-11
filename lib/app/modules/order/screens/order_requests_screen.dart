@@ -61,6 +61,7 @@ class OrderCard extends StatelessWidget {
               children: [
                 const CircleAvatar(
                   radius: 20,
+                  backgroundColor: Colors.grey,
                   backgroundImage: AssetImage('assets/store_logo.png'), // Replace with a suitable image
                 ),
                 const SizedBox(width: 10),

@@ -2,6 +2,7 @@ import 'package:deliveryman_app/app/modules/home/widgets/active_order_card.dart'
 import 'package:deliveryman_app/app/modules/home/widgets/earning_card.dart';
 import 'package:deliveryman_app/app/modules/home/widgets/order_section.dart';
 import 'package:deliveryman_app/common/global_widgets/section_header.dart';
+import 'package:deliveryman_app/util/appconstants.dart';
 import 'package:deliveryman_app/util/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -12,13 +13,22 @@ class DashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('6amMart Delivery'),
+        title:  Text(AppConstants.appName,style: robotoBold.copyWith(fontSize: 20),),
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications),
             onPressed: () {},
           ),
-          Switch(value: true, onChanged: (value) {}), // Online/Offline Toggle
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+               Text("Online",style: robotoBold),
+               const SizedBox(width: 10,),
+               Switch(
+                value: true, onChanged: (value) {}
+                ),
+            ],
+          ),
         ],
       ),
       body: Padding(

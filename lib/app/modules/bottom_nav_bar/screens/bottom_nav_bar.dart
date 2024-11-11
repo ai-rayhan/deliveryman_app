@@ -47,7 +47,7 @@ class _BaseBottomNavScreenState extends State<BaseBottomNavScreen> {
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ResponsiveNavigationBar(
-            backgroundColor:Theme.of(context).hintColor.withOpacity(.1),
+            backgroundColor:Theme.of(context).primaryColor,
             selectedIndex: controller.currentIndex,
             onTabChange: (index){
               controller.changePage(index);
@@ -62,11 +62,11 @@ class _BaseBottomNavScreenState extends State<BaseBottomNavScreen> {
               NavigationBarButton(
                 text: "home".translate,
                 icon: Icons.home,
-                backgroundColor:Theme.of(context).primaryColor ,
+                backgroundColor:Theme.of(context).primaryColor,
              
               ),
               NavigationBarButton(
-                text: "order_request".translate,
+                text: "proposals".translate,
                 icon: Icons.pending_actions_rounded,
                 backgroundColor:Theme.of(context).primaryColor ,
               ),
