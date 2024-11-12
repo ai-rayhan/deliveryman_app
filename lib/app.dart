@@ -1,5 +1,6 @@
 import 'package:deliveryman_app/app/modules/auth/controllers/auth_controller.dart';
 import 'package:deliveryman_app/app/modules/currency/controllers/currency_controller.dart';
+import 'package:deliveryman_app/app/modules/order/controllers/order_controller.dart';
 import 'package:deliveryman_app/app/modules/profile/controllers/profile_controller.dart';
 import 'package:deliveryman_app/app/routes/app_pages.dart';
 import 'package:deliveryman_app/app/modules/language/controllers/language_controller.dart';
@@ -42,6 +43,7 @@ class InitialBindings extends Bindings {
  Get.put(ProfileController());
  Get.put(LocationController());
  Get.put(CurrencyController());
+ Get.put(OrderController());
 
 
   }

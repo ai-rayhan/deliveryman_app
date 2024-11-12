@@ -48,16 +48,16 @@ class _MenuScreenState extends State<MenuScreen> {
                             ),
                             MenuItem(
                               routeName: Routes.addresses,
-                              icon: Icons.location_city,
-                              name: "my_address".translate,
+                              icon: Icons.payment,
+                              name: "payment_history".translate,
                               showDivider: true,
                             ),
-                            MenuItem(
-                               routeName: Routes.wishlist,
-                              icon: Icons.favorite_outlined,
-                              name: "wish_list".translate,
-                              showDivider: true,
-                            ),
+                            // MenuItem(
+                            //    routeName: Routes.wishlist,
+                            //   icon: Icons.favorite_outlined,
+                            //   name: "wish_list".translate,
+                            //   showDivider: true,
+                            // ),
                             MenuItem(
                               routeName: Routes.language,
                               icon: Icons.translate,
@@ -77,58 +77,6 @@ class _MenuScreenState extends State<MenuScreen> {
                     ),
                     SizedBoxSpace.h10,
                     
-                    // Promotional activity section
-                   SectionHeader(name: "promotional_activity".translate),
-                    SizedBoxSpace.h10,
-                    CustomCard(
-                      child: Padding(
-                        padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
-                        child: Column(
-                          children: [
-                            MenuItem(
-                              routeName: Routes.coupon,
-                              icon: Icons.confirmation_num_outlined,
-                              name: "coupon".translate,
-                              showDivider: false,
-                            ),
-                            // MenuItem(
-                            //   routeName: Routes.loyalityPoint,
-                            //   icon: Icons.monetization_on_outlined,
-                            //   name: "loyalty_point".translate,
-                            //   showDivider: false,
-                            // ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBoxSpace.h10,
-
-                  // Refer and earn section
-                  // SectionHeader(name: "earnings".translate),
-                  //   SizedBoxSpace.h10,
-                  //   CustomCard(
-                  //     child: Padding(
-                  //       padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
-                  //       child: Column(
-                  //         children: [
-                  //           MenuItem(
-                  //             routeName: Routes.referAndEarn,
-                  //             icon: Icons.group_add_outlined,
-                  //             name: "refer_and_earn_title".translate,
-                  //             showDivider: true,
-                  //           ),
-                  //           MenuItem(
-                  //             routeName: Routes.joinAsDeliveryMan,
-                  //             icon: Icons.directions_bike_outlined,
-                  //             name: "join_as_delivery_man".translate,
-                  //             showDivider: false,
-                  //           ),
-                  //         ],
-                  //       ),
-                  //     ),
-                  //   ),
-                  //   SizedBoxSpace.h10,
-
                   // Help and support section
                     SectionHeader(
                       name: "help_and_support".translate

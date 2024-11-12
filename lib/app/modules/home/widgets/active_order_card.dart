@@ -1,6 +1,9 @@
 
+import 'package:deliveryman_app/app/modules/order/controllers/order_controller.dart';
+import 'package:deliveryman_app/app/routes/app_routes.dart';
 import 'package:deliveryman_app/util/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ActiveOrderCard extends StatelessWidget {
   @override
@@ -45,7 +48,9 @@ class ActiveOrderCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.toNamed(Routes.orderDetails,arguments: Get.find<OrderController>().orderResponse!.data[0]);
+                    },
                     child: Text('Details'),
                    
                   ),
@@ -53,7 +58,9 @@ class ActiveOrderCard extends StatelessWidget {
                 SizedBox(width: 8),
                 Expanded(
                   child: ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.toNamed(Routes.location);
+                    },
                     icon: Icon(Icons.directions),
                     label: Text('Direction'),
                   ),

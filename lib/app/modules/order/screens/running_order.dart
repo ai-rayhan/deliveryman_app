@@ -65,7 +65,7 @@ class _RunningOrdersScreenState extends State<RunningOrdersScreen> {
             );
           }
       
-          if (controller.products.isEmpty) {
+          if (controller.orders.isEmpty) {
             return EmptyDataWidget(
               msg: 'no_order_found'.translate,
               image: AssetPath.termsIcon,
@@ -73,9 +73,9 @@ class _RunningOrdersScreenState extends State<RunningOrdersScreen> {
           }
           return ListView.builder(
             controller: scrollController,
-            itemCount: controller.products.length,
+            itemCount: controller.orders.length,
             itemBuilder: (context, index) {
-              final order = controller.products[index];
+              final order = controller.orders[index];
           
               return GestureDetector(
                 onTap: () {

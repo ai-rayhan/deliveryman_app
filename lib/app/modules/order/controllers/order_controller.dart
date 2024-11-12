@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 
 class OrderController extends GetxController {
  
-  OrdersResponse? productResponse;
-  List<Order> products=[];
+  OrdersResponse? orderResponse=dummyResponse;
+  List<Order> orders=[];
   bool inProgress=false;
   String? errorMessage = '';
   final OrderService productService = OrderService();
@@ -15,7 +15,7 @@ class OrderController extends GetxController {
   bool isLastPage=false;
 
   void clearProducts(){
-    products=[];
+    orders=[];
     page=1;
     isLastPage=false;
     update();
@@ -32,12 +32,12 @@ class OrderController extends GetxController {
    inProgress=true;
    update();
    ApiResponse<OrdersResponse> result = await productService.getOrders("$url?page=$page");
-  productResponse = dummyResponse;
-  products.addAll(productResponse!.data);
+  orderResponse = dummyResponse;
+  orders.addAll(orderResponse!.data);
   if (result.isSuccess) {
-  productResponse = result.data;
-  products.addAll(productResponse!.data);
-  if(productResponse!.nextPageUrl!=null ){
+  orderResponse = result.data;
+  orders.addAll(orderResponse!.data);
+  if(orderResponse!.nextPageUrl!=null ){
     page++;
   }else{
     isLastPage=true;

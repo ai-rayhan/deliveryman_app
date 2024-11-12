@@ -20,7 +20,7 @@ class _LocationScreenState extends State<LocationScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      getUserLocationOnStart();
+      // getUserLocationOnStart();
     });
   }
 
@@ -31,8 +31,8 @@ class _LocationScreenState extends State<LocationScreen> {
     }else{
       await locationController.checkLocationPermission();
       if (locationController.address.isNotEmpty) {
-        // log("message: ${locationController.currentLocation}");
-        // Get.offAndToNamed(Routes.bottomNavigationBar);
+        log("message: ${locationController.currentLocation}");
+        Get.offAndToNamed(Routes.bottomNavigationBar);
       }
     }
   }
@@ -42,9 +42,9 @@ class _LocationScreenState extends State<LocationScreen> {
     final locationController = Get.find<LocationController>();
     return Scaffold(
       body: GetBuilder<LocationController>(builder: (controller) {
-        if (controller.isLoading) {
-          return const Center(child: CircularProgressIndicator());
-        }
+        // if (controller.isLoading) {
+        //   return const Center(child: CircularProgressIndicator());
+        // }
         return SafeArea(
           child: Stack(
             children: [
